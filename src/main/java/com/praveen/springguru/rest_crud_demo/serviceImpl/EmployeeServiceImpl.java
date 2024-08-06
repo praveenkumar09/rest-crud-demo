@@ -3,6 +3,7 @@ package com.praveen.springguru.rest_crud_demo.serviceImpl;
 import com.praveen.springguru.rest_crud_demo.dao.EmployeeDAO;
 import com.praveen.springguru.rest_crud_demo.entity.Employee;
 import com.praveen.springguru.rest_crud_demo.service.EmployeeService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,5 +22,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAllEmployees() {
         return employeeDAO.getAllEmployees();
+    }
+
+    @Override
+    public Employee findEmployeeById(int id) {
+        return employeeDAO.findEmployeeById(id);
+    }
+
+    @Override
+    @Transactional
+    public Employee saveEmployee(Employee employee) {
+        return employeeDAO.saveEmployee(employee);
+    }
+
+    @Override
+    @Transactional
+    public void deleteEmployee(int id) {
+        employeeDAO.deleteEmployee(id);
     }
 }
